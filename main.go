@@ -18,7 +18,7 @@ const shortUsage = `Usage of mktls:
   $ mktls myservice.default.svc 127.0.0.1
 
   Provide certificates with SAN's' and expiry (in 10 years).
-  $ mktls -expiry 10 myservice.default.svc 127.0.0.1
+  $ mktls -expiryYears 10 myservice.default.svc 127.0.0.1
 
 `
 
@@ -27,7 +27,7 @@ func main() {
 	var args = flag.Args()
 
 	var (
-		expiryYears = flag.Int("expiry", 0, "")
+		expiryYears = flag.Int("expiryYears", 0, "")
 	)
 	flag.Usage = func() {
 		fmt.Fprint(flag.CommandLine.Output(), shortUsage)
@@ -59,6 +59,10 @@ func getUserAndHostname() string {
 }
 
 func (c *TlsCerts) Run(args []string) {
+	if c.expiryYears == 0 {
+		c.expiryYears = 10
+	}
+
 	hostnameRegexp := regexp.MustCompile(`(?i)^(\*\.)?[0-9a-z_-]([0-9a-z._-]*[0-9a-z_-])?$`)
 
 	for i, name := range args {

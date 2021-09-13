@@ -43,6 +43,7 @@ func (c *TlsCerts) Jsonify() string {
 	fatalIfErr(err, "failed to encode daemon private key")
 
 	response := &JsonResponse{
+		ExpiryYears: c.expiryYears,
 		CaCert: string(pem.EncodeToMemory(&pem.Block{Type: "CERTIFICATE", Bytes: c.caCertificateBytes})),
 
 		DaemonKey: string(pem.EncodeToMemory(&pem.Block{Type: "PRIVATE KEY", Bytes: daemonPrivateDER})),

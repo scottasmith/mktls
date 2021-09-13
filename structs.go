@@ -28,11 +28,12 @@ type TlsCerts struct {
 }
 
 type JsonResponse struct {
-	CaCert string
+	ExpiryYears int `json:"expiryYears"`
+	CaCert string `json:"caCert"`
 
-	DaemonKey  string
-	DaemonCert string
+	DaemonKey  string `json:"daemonKey"`
+	DaemonCert string `json:"daemonCert"`
 
-	ClientKey  string
-	ClientCert string
+	ClientKey  string `json:"clientKey"`
+	ClientCert string `json:"clientCert"`
 }
