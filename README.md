@@ -13,7 +13,7 @@ $ mktls example.com "*.example.com" example.test localhost 127.0.0.1 ::1
   "clientCertificate": "..."
 }
 
-$ mkcert -expiryYears 2 example.com "*.example.com" example.test localhost 127.0.0.1 ::1
+$ mktls -expiryYears 2 example.com "*.example.com" example.test localhost 127.0.0.1 ::1
 {
   "expiryYears": 2
   "caCert": "...",
